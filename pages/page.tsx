@@ -24,7 +24,7 @@ const App = () => {
 
           <div className="flex justify-center">
             <img
-              src="path/to/your/image.jpg"
+              src="pages/neural.jpg"
               alt="LOGO"
               className="max-w-full h-auto"
             />
