@@ -13,7 +13,7 @@ const App = () => {
           <a href="/" className="text-gray-600 hover:text-gray-900">
             Home
           </a>
-          <a href="/wiki" className="text-gray-600 hover:text-gray-900">
+          <a href="/app/wiki" className="text-gray-600 hover:text-gray-900">
             Random Article
           </a>
         </div>
@@ -24,7 +24,7 @@ const App = () => {
 
           <div className="flex justify-center">
             <img
-              src="pages/neural.jpg"
+              src="app/neural.jpg"
               alt="LOGO"
               className="max-w-full h-auto"
             />

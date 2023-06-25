@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const wikitemplate = () => {
   const generateContent = () => {
     // Generate content dynamically (example)
