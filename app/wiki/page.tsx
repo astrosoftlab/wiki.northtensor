@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const wikitemplate = () => {
+const App = () => {
   const generateContent = () => {
     // Generate content dynamically (example)
     const headings = ['Heading 1', 'Heading 2', 'Heading 3'];
@@ -76,4 +76,4 @@ const wikitemplate = () => {
   );
 };
 
-export default wikitemplate;
+export default App;
