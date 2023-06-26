@@ -20,10 +20,10 @@ const App = () => {
   };
 
   return (
-    <div className="bg-white flex flex-col min-h-screen">
+    <div className="bg-white flex flex-col min-h-screen dark:bg-gray-600">
       <header className="flex items-center justify-between p-4">
         <div className="flex items-center">
-          <a href="/" className="text-2xl font-bold text-blue-600">
+          <a href="/" className="text-2xl font-bold text-blue-600 dark:text-blue-400">
             WikiTensor
           </a>
         </div>
@@ -36,24 +36,24 @@ const App = () => {
           </a>
         </div>
       </header>
-      <div className="bg-white flex">
+      <div className="bg-white flex dark:bg-gray-700">
         {/* Sidebar */}
-        <aside className="w-1/4 bg-gray-100 p-4">
+        <aside className="w-1/4 bg-gray-100 dark:bg-gray-700 p-4">
           <div className="sticky top-0">
             <h2 className="text-lg font-bold mb-4">Table of Contents</h2>
             <ul className="space-y-2">
               <li>
-                <a href="#section1" className="text-blue-600 hover:text-blue-800">
+                <a href="#section1" className="dark:text-gray-300 hover:text-gray-500 hover:dark:text-gray-200">
                   Section 1
                 </a>
               </li>
               <li>
-                <a href="#section2" className="text-blue-600 hover:text-blue-800">
+                <a href="#section2" className="dark:text-gray-300 hover:text-gray-500 hover:dark:text-gray-200">
                   Section 2
                 </a>
               </li>
               <li>
-                <a href="#section3" className="text-blue-600 hover:text-blue-800">
+                <a href="#section3" className="dark:text-gray-300 hover:text-gray-500 hover:dark:text-gray-200">
                   Section 3
                 </a>
               </li>

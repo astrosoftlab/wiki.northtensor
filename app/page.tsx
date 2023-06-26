@@ -2,18 +2,18 @@ import React from 'react';
 
 const App = () => {
   return (
-    <div className="bg-white flex flex-col min-h-screen">
+    <div className="bg-white flex flex-col min-h-screen dark:bg-gray-600">
       <header className="flex items-center justify-between p-4">
         <div className="flex items-center">
-          <a href="/" className="text-2xl font-bold text-blue-600">
+          <a href="/" className="text-2xl font-bold text-blue-600 dark:text-blue-400">
             WikiTensor
           </a>
         </div>
         <div className="flex space-x-4">
-          <a href="/" className="text-gray-600 hover:text-gray-900">
+          <a href="/" className="text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-300">
             Home
           </a>
-          <a href="/wiki" className="text-gray-600 hover:text-gray-900">
+          <a href="/wiki" className="text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-300">
             Random Article
           </a>
         </div>
@@ -24,7 +24,7 @@ const App = () => {
 
           <div className="flex justify-center">
             <img
-              src="pages/neural.jpg"
+              src="public/neural.jpg"
               alt="LOGO"
               className="max-w-full h-auto"
             />
