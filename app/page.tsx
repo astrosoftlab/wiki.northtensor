@@ -10,9 +10,6 @@ const App = () => {
           </a>
         </div>
         <div className="flex space-x-4">
-          <a href="/" className="text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-300">
-            Home
-          </a>
           <a href="/wiki" className="text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-300">
             Random Article
           </a>
