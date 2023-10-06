@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const App = () => {
   return (
@@ -20,11 +20,7 @@ const App = () => {
           <h1 className="text-3xl font-bold mb-4 text-center">Welcome to WikiTensor</h1>
 
           <div className="flex justify-center">
-            <img
-              src="public/neural.jpg"
-              alt="LOGO"
-              className="max-w-full h-auto"
-            />
+            <img src="public/neural.jpg" alt="LOGO" className="max-w-full h-auto" />
           </div>
           <div className="flex justify-center mt-8">
             <div className="flex">
@@ -33,9 +29,7 @@ const App = () => {
                 placeholder="Write an Article"
                 className="px-4 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-r shadow hover:bg-blue-700">
-                Create
-              </button>
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-r shadow hover:bg-blue-700">Create</button>
             </div>
           </div>
         </div>
@@ -44,7 +38,7 @@ const App = () => {
         <p>&copy; {new Date().getFullYear()} Wikitensor - North Tensor. All rights reserved.</p>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
