@@ -1,27 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply font-poppins leading-normal text-gray-dark;
+}
+
+@layer base {
+  .text-display {
+    @apply lg:text-[136px] text-[105px];
+  }
+
+  .text-display-sm {
+    @apply lg:text-[104px] text-[80];
+  }
+
+  h1 {
+    @apply lg:text-[72px] text-[54px];
+  }
+
+  h2 {
+    @apply lg:text-[60px] text-[45px];
+  }
+
+  h3 {
+    @apply lg:text-[48px] text-[36px];
+  }
+
+  h4 {
+    @apply lg:text-[36px] text-[27px];
+  }
+
+  h5 {
+    @apply lg:text-[30px] text-[23px];
+  }
+
+  h6 {
+    @apply lg:text-[24px] text-[18px];
+  }
+
+  .text-body-xl {
+    @apply lg:text-[20px] text-[15px];
+  }
+
+  .text-body-lg {
+    @apply lg:text-[18px] text-[13px];
+  }
+
+  .text-caption {
+    @apply lg:text-[12px] text-[9px];
+  }
+
+  p {
+    @apply md:text-[14px] text-[10px];
+  }
+
+  /* width */
+  .slick-scroll::-webkit-scrollbar {
+    @apply w-[8px] px-[1px] bg-transparent;
+  }
+
+  /* Track */
+  .slick-scroll::-webkit-scrollbar-track {
+    @apply rounded-[10px] bg-[#FFFFFF40];
+  }
+
+  /* Handle */
+  .slick-scroll::-webkit-scrollbar-thumb {
+    @apply bg-[#FFFFFF90] rounded-[10px];
+  }
+
+  /* Handle on hover */
+  .slick-scroll::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#ffffffbe];
+  }
 }
