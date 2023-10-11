@@ -9,6 +9,7 @@ import WikitensorFavIcon from '@/assets/icons/wikitensor-fav.svg'
 import WikitensorLogoIcon from '@/assets/icons/wikitensor-logo-white.svg'
 import { Search } from '@/components/search'
 import { supabase } from '@/supabase'
+import { ThreeDots } from '@/utils/animation'
 
 interface Props {
   params: { id: string }
@@ -20,7 +21,7 @@ const Index = ({ params: { id } }: Props) => {
   const get = async () => {
     const { data } = await supabase.from('articles').select().eq('article_id', id).single()
 
-    if (data.article_content.length > 0) {
+    if (data?.article_content.length > 0) {
       const new_article_content = data.article_content.map((el: any) => ({
         ...el,
         id: `section-${Math.random().toString(36).substring(2, 20)}`
@@ -87,7 +88,12 @@ const Index = ({ params: { id } }: Props) => {
           </div>
         </div>
 
-        {article.generation_status === 'generating' && <div className="md:mb-[8px] mb-[6px]">(Generating...)</div>}
+        {article && article.generation_status === 'generating' && (
+          <div className="md:mb-[8px] mb-[6px]">
+            Generating
+            <ThreeDots />
+          </div>
+        )}
         {article && (
           <div className="grow bg-gray-light md:p-[22px] p-[17px] md:rounded-xl rounded-lg border border-solid border-[#D1D5DB]">
             <div className="relative">

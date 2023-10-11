@@ -13,7 +13,7 @@
 }
 
 body {
-  @apply font-poppins leading-normal text-gray-dark;
+  @apply font-poppins leading-normal text-gray-dark md:text-[16px] text-[12px];
 }
 
 @layer base {
