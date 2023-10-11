@@ -17,7 +17,7 @@ interface Props {
 const Index = ({ params: { id } }: Props) => {
   const [article, setArticle] = useState<any>()
 
-  const fetch = async () => {
+  const get = async () => {
     const { data } = await supabase.from('articles').select().eq('article_id', id).single()
 
     if (data.article_content.length > 0) {
@@ -37,7 +37,22 @@ const Index = ({ params: { id } }: Props) => {
   }
 
   useEffect(() => {
-    fetch()
+    get()
+
+    supabase
+      .channel('schema-db-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'articles'
+        },
+        (payload) => {
+          if (payload.new.article_id.toString() === id) get()
+        }
+      )
+      .subscribe()
   }, [])
 
   return (
@@ -71,6 +86,8 @@ const Index = ({ params: { id } }: Props) => {
             </button>
           </div>
         </div>
+
+        {article.generation_status === 'generating' && <div className="md:mb-[8px] mb-[6px]">(Generating...)</div>}
         {article && (
           <div className="grow bg-gray-light md:p-[22px] p-[17px] md:rounded-xl rounded-lg border border-solid border-[#D1D5DB]">
             <div className="relative">
