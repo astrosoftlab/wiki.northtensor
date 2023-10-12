@@ -84,4 +84,7 @@ body {
   .slick-scroll::-webkit-scrollbar-thumb:hover {
     @apply bg-[#ffffffbe];
   }
+
+  .rotating-border-circle {
+  }
 }

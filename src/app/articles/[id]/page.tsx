@@ -7,7 +7,8 @@ import Link from 'next/link'
 import RefreshIcon from '@/assets/icons/refresh.svg'
 import WikitensorFavIcon from '@/assets/icons/wikitensor-fav.svg'
 import WikitensorLogoIcon from '@/assets/icons/wikitensor-logo-white.svg'
-import { Search } from '@/components/search'
+import { api } from '@/axios'
+import { PromptInput } from '@/components/promptInput'
 import { supabase } from '@/supabase'
 import { ThreeDots } from '@/utils/animation'
 
@@ -21,17 +22,28 @@ const Index = ({ params: { id } }: Props) => {
   const get = async () => {
     const { data } = await supabase.from('articles').select().eq('article_id', id).single()
 
-    if (data?.article_content.length > 0) {
-      const new_article_content = data.article_content.map((el: any) => ({
-        ...el,
-        id: `section-${Math.random().toString(36).substring(2, 20)}`
-      }))
-      setArticle({ ...data, article_content: new_article_content })
+    if (data) {
+      let newArticle = { ...data }
+
+      if (data.article_content.length > 0) {
+        const new_article_content = data.article_content.map((el: any) => ({
+          ...el,
+          id: `section-${Math.random().toString(36).substring(2, 20)}`
+        }))
+
+        newArticle = {
+          ...newArticle,
+          article_content: new_article_content
+        }
+      }
+
+      setArticle(newArticle)
     }
   }
 
   const scrollToText = (id: string) => {
     const element = document.getElementById(id)
+
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
@@ -54,12 +66,14 @@ const Index = ({ params: { id } }: Props) => {
         }
       )
       .subscribe()
+
+    api.get(`api/article_status/${id}`)
   }, [])
 
   return (
     <div className="flex md:flex-row md:gap-[30px] gap-[23px] flex-col min-h-screen bg-white">
       <div className="md:block hidden md:max-w-[400px] w-full shrink-0"></div>
-      <div className="flex flex-col md:fixed static md:max-w-[400px] w-full md:h-screen h-auto shrink-0 bg-gray-dark text-white">
+      <div className="flex flex-col md:fixed static md:max-w-[400px] w-full md:h-screen h-auto shrink-0 text-white bg-gradient-dark">
         <div className="md:pl-[61px] pl-[46px] md:py-[21px] py-[16px] md:pr-[20px] pr-[15px]">
           <Link href="/">
             <WikitensorLogoIcon className="md:w-[189px] md:h-[36px] w-[141px] h-[27px]" />
@@ -70,6 +84,7 @@ const Index = ({ params: { id } }: Props) => {
         <div className="flex flex-col md:gap-[38px] gap-[28px] md:pl-[61px] pl-[46px] md:py-[54px] py-[40px] md:pr-[20px] pr-[15px] overflow-y-auto slick-scroll">
           <h6 className="font-bold">In this article</h6>
           {article &&
+            Array.isArray(article.article_content) &&
             article.article_content.map((section: any, index: number) => (
               <div key={index} className="cursor-pointer text-body-lg" onClick={() => scrollToText(section.id)}>
                 {section['Section Title']}
@@ -79,7 +94,7 @@ const Index = ({ params: { id } }: Props) => {
       </div>
       <div className="flex flex-col grow md:px-[30px] px-[27px] md:py-[22px] py-[16px]">
         <div className="flex md:flex-row flex-col md:gap-[22px] gap-[17px] md:mb-[40px] mb-[30px]">
-          <Search containerClassName="grow" />
+          <PromptInput containerClassName="grow" />
           <div className="md:py-[10px] py-[8px]">
             <button className="flex items-center md:gap-[8px] gap-[4px] md:px-[22px] px-[17px] md:py-[25px] py-[19px] rounded-full font-medium bg-gray-light">
               <RefreshIcon className="md:w-[17px] w-[13px] md:h-[20px] h-[15px]" />
@@ -103,12 +118,13 @@ const Index = ({ params: { id } }: Props) => {
                 <div>{article.article_title}</div>
               </div>
               <div className="flex flex-col md:pl-[54px] pl-[0] md:gap-[16px] gap-[12px] md:leading-[32px] leading-[24px]">
-                {article.article_content.map((section: any, index: number) => (
-                  <div key={index} id={section.id}>
-                    <div className="font-bold">{section['Section Title']}</div>
-                    <div>{section.Response}</div>
-                  </div>
-                ))}
+                {Array.isArray(article.article_content) &&
+                  article.article_content.map((section: any, index: number) => (
+                    <div key={index} id={section.id}>
+                      <div className="font-bold">{section['Section Title']}</div>
+                      <div>{section.Response}</div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>

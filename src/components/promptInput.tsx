@@ -1,23 +1,30 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import SparclesIcon from '@/assets/icons/sparcles.svg'
+import { api } from '@/axios'
 import { supabase } from '@/supabase'
+import { ThreeDots } from '@/utils/animation'
 import { cn } from '@/utils/cn'
 
 interface Props {
   containerClassName?: string
 }
 
-export const Search = ({ containerClassName }: Props) => {
+export const PromptInput = ({ containerClassName }: Props) => {
   const [articles, setArticles] = useState<any[]>([])
+  const [generating, setGenerating] = useState<boolean>(false)
 
   let timer: any
+  const router = useRouter()
+  const ref = useRef<any>(null)
 
   const search = async (keyword: string) => {
+    console.debug(`---  keyword:`, keyword)
     const { data } = await supabase.from('articles').select().textSearch('article_title', keyword)
     if (data && data.length > 0) {
       setArticles(data)
@@ -33,18 +40,45 @@ export const Search = ({ containerClassName }: Props) => {
       search(keyword)
     }, 200)
   }
+
+  const handleGenerate = async () => {
+    if (ref.current) {
+      setGenerating(true)
+      const {
+        data: { article_id }
+      } = await api.post(`api/article`, null, { params: { topic: ref.current.value, source: 'bittensor' } })
+      setGenerating(false)
+
+      let articleId
+
+      if (article_id) {
+        if (Array.isArray(article_id)) {
+          articleId = article_id[0].article_id
+        } else {
+          articleId = article_id
+        }
+
+        router.push(`/articles/${articleId}`)
+      }
+    }
+  }
+
   return (
     <div className={cn('relative', containerClassName)}>
       <div className="flex md:gap-[12px] gap-[9px] rounded-full shadow-input md:p-[10px] p-[8px]">
         <input
+          ref={ref}
           type="text"
           placeholder="Enter to get creative article..."
           className="grow md:px-[24px] px-[18px] md:py-[23px] py-[18px] font-medium rounded-full bg-gray-light placeholder:text-black"
           defaultValue=""
           onChange={(e) => handleKeywordChange(e.target.value)}
         />
-        <button className="flex justify-center items-center md:w-[70px] w-[60px] md:h-[70px] h-[60px] rounded-full bg-gray-light">
-          <SparclesIcon className="md:w-[34px] w-[26px] md:h-[36px] h-[27px]" />
+        <button
+          className="flex justify-center items-center md:w-[70px] w-[60px] md:h-[70px] h-[60px] rounded-full bg-gray-light"
+          onClick={handleGenerate}
+        >
+          {generating ? <ThreeDots /> : <SparclesIcon className="md:w-[34px] w-[26px] md:h-[36px] h-[27px]" />}
         </button>
       </div>
       {articles.length > 0 && (
