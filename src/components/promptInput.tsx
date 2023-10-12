@@ -24,10 +24,14 @@ export const PromptInput = ({ containerClassName }: Props) => {
   const ref = useRef<any>(null)
 
   const search = async (keyword: string) => {
-    console.debug(`---  keyword:`, keyword)
-    const { data } = await supabase.from('articles').select().textSearch('article_title', keyword)
-    if (data && data.length > 0) {
-      setArticles(data)
+    if (keyword) {
+      const adaptedKeyword = `'${keyword}'`
+      const { data } = await supabase.from('articles').select().textSearch('article_title', adaptedKeyword)
+      if (data && data.length > 0) {
+        setArticles(data)
+      } else {
+        setArticles([])
+      }
     } else {
       setArticles([])
     }
@@ -38,7 +42,7 @@ export const PromptInput = ({ containerClassName }: Props) => {
 
     timer = setTimeout(() => {
       search(keyword)
-    }, 200)
+    }, 300)
   }
 
   const handleGenerate = async () => {
@@ -46,7 +50,7 @@ export const PromptInput = ({ containerClassName }: Props) => {
       setGenerating(true)
       const {
         data: { article_id }
-      } = await api.post(`api/article`, null, { params: { topic: ref.current.value, source: 'bittensor' } })
+      } = await api.post(`api/article`, { topic: ref.current.value, source: 'bittensor' })
       setGenerating(false)
 
       let articleId

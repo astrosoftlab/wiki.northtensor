@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
+import { capitalize } from 'lodash'
+
 import RefreshIcon from '@/assets/icons/refresh.svg'
 import WikitensorFavIcon from '@/assets/icons/wikitensor-fav.svg'
 import WikitensorLogoIcon from '@/assets/icons/wikitensor-logo-white.svg'
@@ -113,9 +115,9 @@ const Index = ({ params: { id } }: Props) => {
           <div className="grow bg-gray-light md:p-[22px] p-[17px] md:rounded-xl rounded-lg border border-solid border-[#D1D5DB]">
             <div className="relative">
               <WikitensorFavIcon className="absolute left-0 top-0 md:w-[30px] w-[23px] md:h-[30px] h-[23px]" />
-              <div className="flex md:pl-[54px] pl-[40px] md:mb-[24px] mb-[18px] md:gap-[4px] gap-[3px] capitalize md:leading-[30px] leading-[23px]">
+              <div className="flex md:pl-[54px] pl-[40px] md:mb-[24px] mb-[18px] md:gap-[4px] gap-[3px] md:leading-[30px] leading-[23px]">
                 <div className="font-bold">Title:</div>
-                <div>{article.article_title}</div>
+                <div>{capitalize(article.article_title)}</div>
               </div>
               <div className="flex flex-col md:pl-[54px] pl-[0] md:gap-[16px] gap-[12px] md:leading-[32px] leading-[24px]">
                 {Array.isArray(article.article_content) &&
