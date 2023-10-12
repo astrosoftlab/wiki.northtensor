@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import Link from 'next/link'
 
-import WikitensorLogoIcon from '@/assets/icons/wikitensor-logo.svg'
+import WikitensorLogoIcon from '@/assets/icons/wikitensor-logo-gradient.svg'
 import { PromptInput } from '@/components/promptInput'
 import { ThreeDots } from '@/utils/animation'
 
