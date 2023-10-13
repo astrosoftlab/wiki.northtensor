@@ -20,6 +20,12 @@ module.exports = {
           light: '#F1F1F1',
           dark: '#1C1C1C'
         }
+      },
+      container: {
+        center: true,
+        screens: {
+          DEFAULT: '1328px'
+        }
       }
     }
   },

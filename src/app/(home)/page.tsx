@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 import WikitensorLogoIcon from '@/assets/icons/wikitensor-logo-gradient.svg'
-import { PromptInput } from '@/components/promptInput'
+import { PromptInput } from '@/components/PromptInput'
 import { ThreeDots } from '@/utils/animation'
 
 const App = () => {
@@ -43,12 +43,16 @@ const App = () => {
       <footer className="py-4 font-medium text-center">
         <p>&copy; {new Date().getFullYear()} Wikitensor. All rights reserved.</p>
         <div className="relative flex justify-center items-center md:gap-[4px] gap-[3px]">
-          <Link href="#">
+          <Link href="/privacy">
             <p>Privacy Policy</p>
           </Link>
           <div className="w-[1px] md:h-[14px] h-[10px] shrink-0 bg-black"></div>
-          <Link href="#">
+          <Link href="/terms">
             <p>Terms of Services</p>
+          </Link>
+          <div className="w-[1px] md:h-[14px] h-[10px] shrink-0 bg-black"></div>
+          <Link href="/faq">
+            <p>FAQ</p>
           </Link>
         </div>
       </footer>
