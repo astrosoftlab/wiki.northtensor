@@ -10,7 +10,7 @@ import RefreshIcon from '@/assets/icons/refresh.svg'
 import WikitensorFavIcon from '@/assets/icons/wikitensor-fav.svg'
 import WikitensorLogoIcon from '@/assets/icons/wikitensor-logo-white.svg'
 import { api } from '@/axios'
-import { PromptInput } from '@/components/TromptInput'
+import { PromptInput } from '@/components/PromptInput'
 import { supabase } from '@/supabase'
 import { ThreeDots } from '@/utils/animation'
 

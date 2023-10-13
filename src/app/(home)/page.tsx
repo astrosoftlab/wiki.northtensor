@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 
 import WikitensorLogoIcon from '@/assets/icons/wikitensor-logo-gradient.svg'
 import { api } from '@/axios'
-import { PromptInput } from '@/components/TromptInput'
+import { PromptInput } from '@/components/PromptInput'
 import { ThreeDots } from '@/utils/animation'
 
 const App = () => {
