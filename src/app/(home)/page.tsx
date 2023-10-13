@@ -3,16 +3,44 @@
 import { useState } from 'react'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import WikitensorLogoIcon from '@/assets/icons/wikitensor-logo-gradient.svg'
-import { PromptInput } from '@/components/promptInput'
+import { api } from '@/axios'
+import { PromptInput } from '@/components/PromptInput'
 import { ThreeDots } from '@/utils/animation'
 
 const App = () => {
+  const router = useRouter()
   const [generatingRandomArticle, setGeneratingRandomArticle] = useState<boolean>(false)
 
-  const handleGenerateRandomArticle = () => {
+  const handleGenerateRandomArticle = async () => {
     setGeneratingRandomArticle(true)
+
+    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/random/title?format=title`)
+    const json = await res.json()
+
+    if (json && json.items && json.items.length > 0) {
+      const title = json.items[0].title.replaceAll('_', ' ')
+
+      const {
+        data: { article_id }
+      } = await api.post(`api/article`, { topic: title, source: 'bittensor' })
+
+      setGeneratingRandomArticle(false)
+
+      let articleId
+
+      if (article_id) {
+        if (Array.isArray(article_id)) {
+          articleId = article_id[0].article_id
+        } else {
+          articleId = article_id
+        }
+
+        router.push(`/articles/${articleId}`)
+      }
+    }
   }
 
   return (
@@ -43,12 +71,16 @@ const App = () => {
       <footer className="py-4 font-medium text-center">
         <p>&copy; {new Date().getFullYear()} Wikitensor. All rights reserved.</p>
         <div className="relative flex justify-center items-center md:gap-[4px] gap-[3px]">
-          <Link href="#">
+          <Link href="/privacy">
             <p>Privacy Policy</p>
           </Link>
           <div className="w-[1px] md:h-[14px] h-[10px] shrink-0 bg-black"></div>
-          <Link href="#">
+          <Link href="/terms">
             <p>Terms of Services</p>
+          </Link>
+          <div className="w-[1px] md:h-[14px] h-[10px] shrink-0 bg-black"></div>
+          <Link href="/faq">
+            <p>FAQ</p>
           </Link>
         </div>
       </footer>

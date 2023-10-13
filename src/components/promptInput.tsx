@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-import SparclesIcon from '@/assets/icons/sparcles.svg'
+import SparclesIcon from '@/assets/icons/sparcles-black.svg'
 import { api } from '@/axios'
 import { supabase } from '@/supabase'
 import { ThreeDots } from '@/utils/animation'

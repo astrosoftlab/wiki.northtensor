@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,79 +12,111 @@
   }
 }
 
-body {
-  @apply font-poppins leading-normal text-gray-dark md:text-[16px] text-[12px];
-}
-
 @layer base {
-  .text-display {
-    @apply lg:text-[136px] text-[105px];
+  body {
+    @apply font-poppins leading-normal text-gray-dark md:text-[16px] text-[12px];
   }
 
-  .text-display-sm {
-    @apply lg:text-[104px] text-[80];
+  .text-display {
+    @apply md:text-[87px] text-[46px] tracking-[-0.4px];
   }
 
   h1 {
-    @apply lg:text-[72px] text-[54px];
+    @apply md:text-[72px] text-[54px];
   }
 
   h2 {
-    @apply lg:text-[60px] text-[45px];
+    @apply md:text-[60px] text-[45px];
   }
 
   h3 {
-    @apply lg:text-[48px] text-[36px];
+    @apply md:text-[48px] text-[36px];
   }
 
   h4 {
-    @apply lg:text-[36px] text-[27px];
+    @apply md:text-[38px] text-[28px];
   }
 
   h5 {
-    @apply lg:text-[30px] text-[23px];
+    @apply md:text-[30px] text-[23px];
   }
 
   h6 {
-    @apply lg:text-[24px] text-[18px];
+    @apply md:text-[24px] text-[18px];
+  }
+
+  .container {
+    @apply xl:px-0 px-[20px];
   }
 
   .text-body-xl {
-    @apply lg:text-[20px] text-[15px];
+    @apply md:text-[20px] text-[15px];
   }
 
   .text-body-lg {
-    @apply lg:text-[18px] text-[13px];
+    @apply md:text-[18px] text-[13px];
+  }
+
+  .text-body {
+    @apply md:leading-[32px] leading-[28px];
   }
 
   .text-caption {
-    @apply lg:text-[12px] text-[9px];
+    @apply md:text-[12px] text-[9px];
   }
 
   p {
     @apply md:text-[14px] text-[10px];
   }
 
-  /* width */
   .slick-scroll::-webkit-scrollbar {
     @apply w-[8px] px-[1px] bg-transparent;
   }
 
-  /* Track */
   .slick-scroll::-webkit-scrollbar-track {
     @apply rounded-[10px] bg-[#FFFFFF40];
   }
 
-  /* Handle */
   .slick-scroll::-webkit-scrollbar-thumb {
     @apply bg-[#FFFFFF90] rounded-[10px];
   }
 
-  /* Handle on hover */
   .slick-scroll::-webkit-scrollbar-thumb:hover {
     @apply bg-[#ffffffbe];
   }
 
   .rotating-border-circle {
+  }
+
+  .gap-d-36 {
+    @apply md:gap-[36px] gap-[24px];
+  }
+
+  .gap-d-24 {
+    @apply md:gap-[24px] gap-[18px];
+  }
+
+  .gap-d-20 {
+    @apply md:gap-[20px] gap-[15px];
+  }
+
+  .gap-d-18 {
+    @apply md:gap-[18px] gap-[13px];
+  }
+
+  .gap-d-16 {
+    @apply md:gap-[16px] gap-[12px];
+  }
+
+  .gap-d-12 {
+    @apply md:gap-[12px] gap-[8px];
+  }
+
+  .gap-d-10 {
+    @apply md:gap-[10px] gap-[7px];
+  }
+
+  hr {
+    @apply border-black;
   }
 }
