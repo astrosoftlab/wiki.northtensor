@@ -1,6 +1,7 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Wiki.NorthTensor
 
-## Getting Started
+![image](https://github.com/jasonmz/wiki.northtensor/assets/48445639/3cc73ced-dcc4-4911-8ebd-820330671cf9)
+
 
 First, run the development server:
 
